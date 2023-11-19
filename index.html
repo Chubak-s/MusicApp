@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Music App</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+<div class="main" id="app">
+    <div v-show='showMenu' class="menu">
+        <h2>playlist</h2>
+        <hr>
+        <div class='list' v-for="(song, index) in songs" :key="index" @click="handleClick(index)" >
+            {{ index + 1 }}. {{ song.name }}
+        </div>
+    </div>
+    <div class="music-player">
+        <div class="header">
+            <button type="button" class="likeBtn">
+                <i class="fas fa-heart"></i>
+            </button>
+            <button type="button" class="menuBtn" @click="showMenuFunction">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+        </div>
+        <img :src="current.cover" alt="m" class="cover">
+        <h2 class="name">{{current.name}}</h2>
+        <p class="author">{{current.artist}}</p>
+        <div class="audioLine">
+            <input type="range" :value=currentTime/10 class="seek-bar">
+            <span class="current-time">00:00</span>
+            <span class="song-duration">2:56</span>
+        </div>
+        <div class="controlPanel">
+            <button type="button" class="left-btn" @click="prevMusic">
+                <i class="fas fa-angle-left"></i>
+            </button>
+            <button type="button" class="play-btn" @click="playMusic">
+                <i :class="playBtnIcon"></i>
+            </button>
+            <button type="button" class="right-btn" @click="nextMusic">
+                <i class="fas fa-angle-right"></i>
+            </button>
+            <h1></h1>
+        </div>
+    </div>
+</div>
+<script src="https://unpkg.com/vue@next"></script>
+<script src="app.js"></script>
+</body>
+</html>

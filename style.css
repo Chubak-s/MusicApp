@@ -1,0 +1,142 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #202222;
+    font-family: 'Roboto', sans-serif;
+}
+
+.music-player{
+    width: 350px;
+    height: 600px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 40px 100px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    color: #f9f2f3;
+}
+.name, .author{
+    text-align: center;
+    text-transform: capitalize;
+}
+.name{
+    font-size: 40px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.author{
+    font-size: 20px;
+}
+.cover{
+   width: 100%;
+    border-radius: 0 0 15px 15px;
+}
+.header{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+.likeBtn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    padding-top: 5px;
+    border-radius: 50%;
+    background: #202222;
+    color: #f9f2f3;
+}
+
+.menuBtn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    padding-top: 2px;
+    border-radius: 50%;
+    background: #202222;
+    color: #f9f2f3;
+}
+.audioLine{
+    margin: 0 10px;
+    position: relative;
+}
+.seek-bar{
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 10px;
+    background: #f9f2f3;
+    overflow: hidden;
+    cursor: pointer;
+}
+.seek-bar::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 1px;
+    height: 20px;
+    box-shadow: -400px 0 0 400px #007de8;
+}
+.current-time, .song-duration{
+    font-size: 14px;
+}
+.song-duration{
+    position: absolute;
+    right: 0;
+}
+.controlPanel{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0 auto;
+}
+.play-btn{
+    position: relative;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #f9f2f3;
+    cursor: pointer;
+}
+.left-btn{
+    margin-right: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #f9f2f3;
+}
+.right-btn{
+    margin-left: 10px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: #f9f2f3;
+}
+.menu{
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #f9f2f3;
+    height: 100Vh;
+    width: 30vw;
+}
+.menu > h2{
+    margin: 20px 0  0 30px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 48px;
+}
+.list{
+    margin: 5px 10px;
+    padding: 5px;
+    cursor: pointer;
+}
