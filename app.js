@@ -3,6 +3,7 @@ const App={
         return{
             isPlaying: false,
             playBtnIcon: "fas fa-play",
+            currentTimer: '00:00',
             currentTime: 0,
             songs:[
                 {
@@ -34,14 +35,28 @@ const App={
             index: 0,
             audio: new Audio(),
             showMenu: false,
-            seekBarMax: 0,
+            seekBarMax:'--:--',
         }
     },
-    mounted(){
-      this.audio.src =  this.songs[this.index].path;
-      this.current = this.songs[this.index];
-      this.seekBarMax = this.audio.duration;
-      console.log(this.seekBarMax);
+    beforeCreate(){
+
+    },
+    mounted() {
+        this.audio.src = this.songs[this.index].path;
+        this.current = this.songs[this.index];
+
+        let preventUpdate = false;
+
+        const updateTime = (e) => {
+            if (!preventUpdate) {
+                const { duration, currentTime } = e.srcElement;
+                this.currentTime = (currentTime / duration) * 100;
+            }
+        }
+        this.audio.addEventListener('ended', () => {
+            this.nextMusic();
+        });
+        this.audio.addEventListener('timeupdate', updateTime);
     },
     methods:{
         playMusic(){
@@ -54,9 +69,6 @@ const App={
                 this.isPlaying = true;
                 this.playBtnIcon = "fas fa-pause";
             }
-            setInterval(() => {
-                this.currentTime = this.audio.currentTime;
-            }, 0.001);
         },
         prevMusic(){
             this.index--;
@@ -90,6 +102,46 @@ const App={
         },
         showMenuFunction(){
             this.showMenu = this.showMenu === false;
+        },
+        onLoadedMetadata() {
+            const audioElement = this.audio;
+            let timeAudio =  Math.round(audioElement.duration);
+            let min =  Math.floor(timeAudio/60);
+            let sec = Math.round(timeAudio%60);
+            if (isNaN(timeAudio)){
+                return this.seekBarMax;
+            }
+            else if (min<10 && sec>9) {
+                return `0${min}:${sec}`
+            }
+            else if (min<10 && sec<10) {
+                return `0${min}:0${sec}`
+            }
+            return `${min}:${sec}`
+        },
+        currentTimeData(){
+            const audioElement = this.audio;
+            let timeAudio =  Math.round(audioElement.currentTime);
+            let min = Math.floor(timeAudio/60);
+            let sec = Math.round(timeAudio%60);
+            if (timeAudio===0){
+                return this.currentTimer;
+            }
+            else if (min<10 && sec>9) {
+                return `0${min}:${sec}`
+            }
+            else if (min<10 && sec<10) {
+                return `0${min}:0${sec}`
+            }
+            return `${min}:${sec}`
+        },
+        change(e){
+            const area = document.getElementById('area');
+            const rect = area.getBoundingClientRect();
+            const x = e.clientX- rect.left;
+            const result = Math.round((x/rect.width)*this.audio.duration);
+            this.audio.currentTime = result;
+            console.log(result);
         }
     },
 }

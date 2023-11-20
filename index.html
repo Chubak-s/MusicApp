@@ -31,9 +31,9 @@
         <h2 class="name">{{current.name}}</h2>
         <p class="author">{{current.artist}}</p>
         <div class="audioLine">
-            <input type="range" :value=currentTime/10 class="seek-bar">
-            <span class="current-time">00:00</span>
-            <span class="song-duration">2:56</span>
+            <input type="range" :value=currentTime class="seek-bar" id="area" @click="change($event)">
+            <span class="current-time">{{currentTimeData()}}</span>
+            <span class="song-duration">{{onLoadedMetadata()}}</span>
         </div>
         <div class="controlPanel">
             <button type="button" class="left-btn" @click="prevMusic">
