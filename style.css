@@ -135,8 +135,33 @@ body{
     text-transform: capitalize;
     font-size: 48px;
 }
+.liked > h2{
+    margin: 20px 0  0 30px;
+    font-weight: bold;
+    text-transform: capitalize;
+    font-size: 48px;
+}
 .list{
     margin: 5px 10px;
     padding: 5px;
     cursor: pointer;
+}
+.liked{
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #f9f2f3;
+    height: 100Vh;
+    width: 30vw;
+}
+.likedBtn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 30px;
+    height: 30px;
+    padding-top: 5px;
+    border-radius: 50%;
+    background: #202222;
+    color: red;
 }

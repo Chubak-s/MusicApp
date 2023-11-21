@@ -18,11 +18,25 @@
             {{ index + 1 }}. {{ song.name }}
         </div>
     </div>
+    <div v-show='showMenu' class="liked">
+        <h2>Liked</h2>
+        <hr>
+        <div class='list' v-for="(song, index) in likedSongs"  :key="index" @click="handleClick(index)">
+            {{ index + 1 }}. {{ song.name }}
+        </div>
+    </div>
     <div class="music-player">
         <div class="header">
-            <button type="button" class="likeBtn">
-                <i class="fas fa-heart"></i>
-            </button>
+            <div v-if="this.current.liked===false">
+                <button type="button" class="likeBtn" @click="like">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
+            <div v-else>
+                <button type="button" class="likedBtn" @click="like">
+                    <i class="fas fa-heart"></i>
+                </button>
+            </div>
             <button type="button" class="menuBtn" @click="showMenuFunction">
                 <i class="fas fa-ellipsis-v"></i>
             </button>

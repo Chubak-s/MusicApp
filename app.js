@@ -30,16 +30,31 @@ const App={
                     artist:'MORGENSTERN',
                     cover:'img/4.jpg',
                 },
+                {
+                    name:'Underground 3',
+                    path:'tracks/morgenshtern-entype-104-underground-3-polnaya-versiya.mp3',
+                    artist:'Entype, 104, MORGENSTERN',
+                    cover:'img/5.jpg',
+                },
+                {
+                    name:'Teни Хиросимы',
+                    path:'tracks/GONEFludd_-_TENI_KHIROSIMY_73145423.mp3',
+                    artist:'GONE.Fludd',
+                    cover:'img/6.jpg',
+                },
             ],
             current:{},
             index: 0,
             audio: new Audio(),
             showMenu: false,
             seekBarMax:'--:--',
+            likedSongs: [],
         }
     },
-    beforeCreate(){
-
+    created(){
+        for (let i=0; i<this.songs.length; i++){
+            this.songs[i].liked=false;
+        }
     },
     mounted() {
         this.audio.src = this.songs[this.index].path;
@@ -80,6 +95,7 @@ const App={
             if (this.isPlaying) {
                 this.audio.play();
             }
+
         },
         nextMusic(){
             this.index++;
@@ -142,6 +158,16 @@ const App={
             const result = Math.round((x/rect.width)*this.audio.duration);
             this.audio.currentTime = result;
             console.log(result);
+        },
+        like(){
+            if (this.current.liked === false) {
+                this.current.liked = true;
+                this.likedSongs.push(this.current)
+            } else {
+                this.current.liked = false;
+                let pos = this.likedSongs.indexOf(this.current);
+                this.likedSongs.splice(pos, 1);
+            }
         }
     },
 }
