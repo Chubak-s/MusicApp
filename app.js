@@ -99,7 +99,8 @@ const App={
             if (this.isPlaying) {
                 this.audio.play();
             }
-
+            const body = document.querySelector('body');
+            body.style.background = "linear-gradient(180deg, rgba(18, 18, 18, 0.00) 0%, #121212 100%), url('" + this.current.cover + "'), lightgray 50% / cover no-repeat";
         },
         nextMusic(){
             this.index++;
@@ -111,6 +112,8 @@ const App={
             if (this.isPlaying) {
                 this.audio.play();
             }
+            const body = document.querySelector('body');
+            body.style.background = "linear-gradient(180deg, rgba(18, 18, 18, 0.00) 0%, #121212 100%), url('" + this.current.cover + "'), lightgray 50% / cover no-repeat";
         },
         handleClick(song){
             let index;
@@ -125,9 +128,33 @@ const App={
             this.audio.pause();
             this.isPlaying = false;
             this.playBtnIcon = "fas fa-play";
+            const body = document.querySelector('body');
+            body.style.background = "linear-gradient(180deg, rgba(18, 18, 18, 0.00) 0%, #121212 100%), url('" + this.current.cover + "'), lightgray 50% / cover no-repeat";
         },
         showMenuFunction(){
-            this.showMenu = this.showMenu === false;
+            this.showMenu = !this.showMenu;
+            let menu = document.getElementById('menu');
+            if (this.showMenu === true) {
+                setTimeout(() => {
+                    menu.classList.remove('hide');
+                    menu.classList.add('show');
+                }, 100); // задержка перед добавлением класса, чтобы плавно активировать переход
+            } else {
+                setTimeout(() => {
+                    menu.classList.replace('show','hide');
+                }, 100);
+            }
+            let liked = document.getElementById('liked');
+            if (this.showMenu === true) {
+                setTimeout(() => {
+                    liked.classList.remove('hide');
+                    liked.classList.add('show');
+                }, 100); // задержка перед добавлением класса, чтобы плавно активировать переход
+            } else {
+                setTimeout(() => {
+                    liked.classList.replace('show','hide');
+                }, 100);
+            }
             this.loadList();
         },
         onLoadedMetadata() {
@@ -198,7 +225,6 @@ const App={
                 for (let j=0; j<savedList.length; j++){
                     if (this.songs[i].name===savedList[j].name){
                         this.songs[i].liked=true;
-                        console.log('sefsfesfsefesfsefs')
                     }
                 }
                 console.log(

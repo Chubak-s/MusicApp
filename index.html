@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Music App</title>
+    <meta name="viewport" content="width=980px, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
@@ -11,14 +12,14 @@
 </head>
 <body>
 <div class="main" id="app">
-    <div v-show='showMenu' class="menu">
+    <div  class="menu" id="menu">
         <h2>playlist</h2>
         <hr>
         <div class='list' v-for="(song, index) in songs" :key="index" @click="handleClick(song)" >
             {{ index + 1 }}. {{ song.name }}
         </div>
     </div>
-    <div v-show='showMenu' class="liked">
+    <div  class="liked" id="liked">
         <h2>Liked</h2>
         <hr>
         <div class='list' v-for="(song, index) in likedSongs"  :key="index" @click="handleClick(song)">
