@@ -14,14 +14,14 @@
     <div v-show='showMenu' class="menu">
         <h2>playlist</h2>
         <hr>
-        <div class='list' v-for="(song, index) in songs" :key="index" @click="handleClick(index)" >
+        <div class='list' v-for="(song, index) in songs" :key="index" @click="handleClick(song)" >
             {{ index + 1 }}. {{ song.name }}
         </div>
     </div>
     <div v-show='showMenu' class="liked">
         <h2>Liked</h2>
         <hr>
-        <div class='list' v-for="(song, index) in likedSongs"  :key="index" @click="handleClick(index)">
+        <div class='list' v-for="(song, index) in likedSongs"  :key="index" @click="handleClick(song)">
             {{ index + 1 }}. {{ song.name }}
         </div>
     </div>

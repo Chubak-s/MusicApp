@@ -55,6 +55,7 @@ const App={
         for (let i=0; i<this.songs.length; i++){
             this.songs[i].liked=false;
         }
+        this.loadLikeBtn();
     },
     mounted() {
         this.audio.src = this.songs[this.index].path;
@@ -108,8 +109,14 @@ const App={
                 this.audio.play();
             }
         },
-        handleClick(index){
-            this.index=index;
+        handleClick(song){
+            let index;
+            for (let i=0; i<this.songs.length; i++){
+                if (song.name === this.songs[i].name){
+                    index = i;
+                    break;
+                }
+            }
             this.current = this.songs[index];
             this.audio.src =  this.songs[index].path;
             this.audio.pause();
@@ -118,6 +125,7 @@ const App={
         },
         showMenuFunction(){
             this.showMenu = this.showMenu === false;
+            this.loadList();
         },
         onLoadedMetadata() {
             const audioElement = this.audio;
@@ -168,6 +176,33 @@ const App={
                 let pos = this.likedSongs.indexOf(this.current);
                 this.likedSongs.splice(pos, 1);
             }
+            this.saveList();
+        },
+        saveList() {
+            const list = this.likedSongs;
+            const listString = JSON.stringify(list);
+            localStorage.setItem('myList', listString);
+        },
+        loadList() {
+            const savedListString = localStorage.getItem('myList');
+            const savedList = JSON.parse(savedListString);
+            this.likedSongs = savedList;
+        },
+        loadLikeBtn(){
+            const savedListString = localStorage.getItem('myList');
+            const savedList = JSON.parse(savedListString);
+            for (let i=0; i<this.songs.length; i++){
+                for (let j=0; j<savedList.length; j++){
+                    if (this.songs[i].name===savedList[j].name){
+                        this.songs[i].liked=true;
+                        console.log('sefsfesfsefesfsefs')
+                    }
+                }
+                console.log(
+                    this.songs[i], this.songs[i].liked
+                )
+            }
+            console.log(savedList)
         }
     },
 }
