@@ -49,13 +49,16 @@ const App={
             showMenu: false,
             seekBarMax:'--:--',
             likedSongs: [],
+            firstTimeLoad: 0,
         }
     },
     created(){
         for (let i=0; i<this.songs.length; i++){
             this.songs[i].liked=false;
         }
-        this.loadLikeBtn();
+        if (localStorage.getItem('myList')!=null){
+            this.loadLikeBtn();
+        }
     },
     mounted() {
         this.audio.src = this.songs[this.index].path;
