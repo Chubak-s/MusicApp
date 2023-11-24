@@ -11,5 +11,5 @@
 * JavaScript
 * Vue3
 ## Скриншоты
-![Снимок экрана 2023-11-24 025439](https://github.com/Chubak-s/MusicApp/assets/112934217/576f7074-ea2b-4d3d-9187-6e8be111bc40)
 ![Снимок экрана 2023-11-24 025516](https://github.com/Chubak-s/MusicApp/assets/112934217/024afff7-65e9-40e7-928b-aa2d61316f9e)
+![image](https://github.com/Chubak-s/MusicApp/assets/112934217/e9feb9c5-94e0-4cd0-8c2f-02dfd4df8a61)
